@@ -9,6 +9,16 @@
     }
   },
   "profiles": {
+    "ChatOnlineV2": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      //"launchUrl": "swagger",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,

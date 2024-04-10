@@ -30,7 +30,7 @@ namespace ChatOnlineV2.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DisPlayName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DisPlayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BrithDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
