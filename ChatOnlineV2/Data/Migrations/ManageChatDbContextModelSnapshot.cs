@@ -31,6 +31,10 @@ namespace ChatOnlineV2.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Bietdanh")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("BrithDay")
                         .HasColumnType("datetime2");
 

@@ -12,7 +12,7 @@
     "ChatOnlineV2": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      //"launchUrl": "swagger",
+      "launchUrl": "swagger",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5000",
       "environmentVariables": {

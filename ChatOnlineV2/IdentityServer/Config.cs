@@ -25,7 +25,7 @@ namespace ChatOnlineV2.IdentityServer
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                new ApiResource("api.WebApp", "WebApp API")
+                new ApiResource("api.WebChat", "WebChat API")
             };
 
 
@@ -33,7 +33,7 @@ namespace ChatOnlineV2.IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-                new ApiScope("api.WebApp", "WebApp API")
+                new ApiScope("api.WebChat", "WebChat API")
         };
 
 
@@ -45,7 +45,7 @@ namespace ChatOnlineV2.IdentityServer
             {
                 new Client
                 {
-                    ClientId = "WebApp",
+                    ClientId = "WebChat",
                     ClientSecrets = { new Secret("secret".Sha256()) },//  mã hóa theo Sha256
 
                     AllowedGrantTypes = GrantTypes.Code,
@@ -67,7 +67,7 @@ namespace ChatOnlineV2.IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "api.WebApp"
+                        "api.WebChat"
                     }
                  },
                 new Client
@@ -87,7 +87,7 @@ namespace ChatOnlineV2.IdentityServer
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "api.WebApp"
+                        "api.WebChat"
                     }
                 },
 

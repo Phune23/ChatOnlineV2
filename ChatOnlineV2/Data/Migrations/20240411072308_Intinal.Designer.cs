@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChatOnlineV2.Data.Migrations
 {
     [DbContext(typeof(ManageChatDbContext))]
-    [Migration("20240410160743_Initial")]
-    partial class Initial
+    [Migration("20240411072308_Intinal")]
+    partial class Intinal
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,10 @@ namespace ChatOnlineV2.Data.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Bietdanh")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("BrithDay")
                         .HasColumnType("datetime2");
