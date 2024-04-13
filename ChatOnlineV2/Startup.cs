@@ -50,6 +50,14 @@ namespace ChatOnlineV2
 
 
             services.AddAuthentication()
+            .AddGoogle(googleOptions =>
+            {
+            // Đọc thông tin Authentication:Google từ appsettings.json
+            IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
+                // Thiết lập ClientID và ClientSecret để truy cập API google
+                googleOptions.ClientId = googleAuthNSection["ClientId"];
+                googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
+            })
             .AddLocalApi("Bearer", option =>
             {
                 option.ExpectedScope = "api.WebChat";
