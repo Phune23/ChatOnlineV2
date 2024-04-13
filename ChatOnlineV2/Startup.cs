@@ -50,18 +50,27 @@ namespace ChatOnlineV2
 
 
             services.AddAuthentication()
-            .AddGoogle(googleOptions =>
-            {
-            // Đọc thông tin Authentication:Google từ appsettings.json
-            IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
-                // Thiết lập ClientID và ClientSecret để truy cập API google
-                googleOptions.ClientId = googleAuthNSection["ClientId"];
-                googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
-            })
-            .AddLocalApi("Bearer", option =>
-            {
-                option.ExpectedScope = "api.WebChat";
-            });
+                .AddGoogle(googleOptions =>
+                {
+                // Đọc thông tin Authentication:Google từ appsettings.json
+                IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
+                    // Thiết lập ClientID và ClientSecret để truy cập API google
+                    googleOptions.ClientId = googleAuthNSection["ClientId"];
+                    googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
+                })
+               .AddFacebook(facebookOptions => {
+                   // Đọc cấu hình
+                   IConfigurationSection facebookAuthNSection = Configuration.GetSection("Authentication:Facebook");
+                   facebookOptions.AppId = facebookAuthNSection["AppId"];
+                   facebookOptions.AppSecret = facebookAuthNSection["AppSecret"];
+                   // Thiết lập đường dẫn Facebook chuyển hướng đến
+                   facebookOptions.CallbackPath = "/sign-facebook";
+               })
+
+                .AddLocalApi("Bearer", option =>
+                {
+                    option.ExpectedScope = "api.WebChat";
+                });
 
 
             services.AddAuthorization(options =>
@@ -136,7 +145,7 @@ namespace ChatOnlineV2
             app.UseStaticFiles();
             app.UseIdentityServer();
 
-            app.UseAuthentication();
+            ////app.UseAuthentication();
 
             app.UseRouting();
 
