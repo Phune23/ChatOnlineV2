@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChatOnlineV2.Data.Migrations
 {
     [DbContext(typeof(ManageChatDbContext))]
-    [Migration("20240411072308_Intinal")]
-    partial class Intinal
+    [Migration("20240413162952_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,19 +34,11 @@ namespace ChatOnlineV2.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Bietdanh")
-                        .IsRequired()
+                    b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("BrithDay")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DisPlayName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -55,6 +47,9 @@ namespace ChatOnlineV2.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -100,6 +95,62 @@ namespace ChatOnlineV2.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ChatOnlineV2.Data.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("FromUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ToRoomId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("ToRoomId");
+
+                    b.ToTable("Messages", (string)null);
+                });
+
+            modelBuilder.Entity("ChatOnlineV2.Data.Entities.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdminId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminId");
+
+                    b.ToTable("Rooms", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -236,6 +287,36 @@ namespace ChatOnlineV2.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ChatOnlineV2.Data.Entities.Message", b =>
+                {
+                    b.HasOne("ChatOnlineV2.Data.Entities.ManageUser", "FromUser")
+                        .WithMany("Messages")
+                        .HasForeignKey("FromUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ChatOnlineV2.Data.Entities.Room", "ToRoom")
+                        .WithMany("Messages")
+                        .HasForeignKey("ToRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("ToRoom");
+                });
+
+            modelBuilder.Entity("ChatOnlineV2.Data.Entities.Room", b =>
+                {
+                    b.HasOne("ChatOnlineV2.Data.Entities.ManageUser", "Admin")
+                        .WithMany("Rooms")
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Admin");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -285,6 +366,18 @@ namespace ChatOnlineV2.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ChatOnlineV2.Data.Entities.ManageUser", b =>
+                {
+                    b.Navigation("Messages");
+
+                    b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("ChatOnlineV2.Data.Entities.Room", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

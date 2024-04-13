@@ -20,13 +20,12 @@ namespace ChatOnlineV2.Data
             builder.Entity<IdentityRole>().Property(x => x.Id).HasMaxLength(50).IsRequired(true);
             builder.Entity<ManageUser>().Property(x => x.Id).HasMaxLength(50).IsRequired(true);
 
-            //builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); //gọi tất các config có hiện tại Assembly
         }
 
         public DbSet<ManageUser> ManageUsers { get; set; }
-        //public DbSet<Room> Rooms { get; set; }
-        //public DbSet<Message> Messages { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
     }
 }

@@ -32,13 +32,11 @@ namespace ChatOnlineV2.Controllers
             var dob = DateTime.Parse(request.Dob);
             var user = new ManageUser() // vì tạo một User lên ta dùng User Entites luân vì nó có đủ các tường
             {
-                Id = Guid.NewGuid().ToString(),
-                Email = request.Email,
-                BrithDay = DateTime.Parse(request.Dob),
-                UserName = request.UserName,
-                DisPlayName = request.LastName,
+                ////Id = Guid.NewGuid().ToString(),
+                ////Email = request.Email,
+                ////UserName = request.UserName,
 
-                PhoneNumber = request.PhoneNumber,
+                ////PhoneNumber = request.PhoneNumber,
 
             };
             var result = await _userManager.CreateAsync(user, request.Password); // phương thức CreateAsync đã được Identity.Core, hỗ trợ , bài miên phí ta phải viết nó
@@ -59,12 +57,10 @@ namespace ChatOnlineV2.Controllers
 
             var uservms = await users.Select(u => new UserViewModel() // vì muốn xem lên ta dùng UserVm
             {
-                Id = u.Id,
-                UserName = u.UserName,
-                Dob = u.BrithDay,
-                Email = u.Email,
-                PhoneNumber = u.PhoneNumber,
-                FirstName = u.DisPlayName,
+                ////Id = u.Id,
+                ////UserName = u.UserName,
+                ////Email = u.Email,
+                ////PhoneNumber = u.PhoneNumber,
 
             }).ToListAsync();
 
@@ -80,12 +76,10 @@ namespace ChatOnlineV2.Controllers
 
             var userVm = new UserViewModel()
             {
-                Id = user.Id,
-                UserName = user.UserName,
-                Dob = user.BrithDay,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                FirstName = user.DisPlayName,
+                //Id = user.Id,
+                //UserName = user.UserName,
+                //Email = user.Email,
+                //PhoneNumber = user.PhoneNumber,
 
             };
             return Ok(userVm);
