@@ -49,6 +49,8 @@ namespace ChatOnlineV2
             services.AddTransient<IEmailSender, EmailSenderService>();
 
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddAuthentication()
                 .AddGoogle(googleOptions =>
                 {
