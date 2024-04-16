@@ -84,8 +84,8 @@ namespace ChatOnlineV2
                 });
             });
 
-
-            services.AddRazorPages(options =>
+                
+            IMvcBuilder build = services.AddRazorPages(options =>
             {
                 options.Conventions.AddAreaFolderRouteModelConvention("Identity", "/Account/", model =>
                 {
@@ -98,6 +98,13 @@ namespace ChatOnlineV2
                 });
             });
 
+
+#if DEBUG
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); if (environment == Environments.Development)
+            {
+                build.AddRazorRuntimeCompilation();
+            }
+#endif
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>

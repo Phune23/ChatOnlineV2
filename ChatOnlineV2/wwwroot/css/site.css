@@ -15,8 +15,180 @@ html {
 html {
   position: relative;
   min-height: 100%;
+
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #c4c4c4;
+}
+.body {
+    background-color: #808080;
+    padding-bottom: 200px;
+    background-image: url('../images/nen.png');
+    background-size:110%;
+    background-repeat:no-repeat;
+}
+
+footer{
+    background:black;
+    opacity:0.5;
+}
+/*==========================================================================*/
+.headerMain {
+    background: white;
+}
+.opacity{
+    opacity:0.3;
+}
+.AllViewWebchat {
+    padding-top:10px;
+    display: flex;
+    height: 600px;
+    justify-content: space-between;
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    opacity: 0.85;
+}
+
+    .AllViewWebchat .sidebar {
+        width: 200px;
+        margin: -20px;
+        padding: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 5px 5px 10px -1px;
+    }
+
+.AllViewWebchat .main-content{
+    flex-grow:1;
+}
+
+.AllViewWebchat .users-container{
+    width:250px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background: #d5d4dc;
+    color: #524a96;
+    border-radius: 20px;
+}
+
+.sidebar .a{
+    color:black;
+
+}
+
+.sidebar .i{
+    font-size:14px;
+    color:black;
+}
+
+    .sidebar .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        padding: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 5px 5px 10px -1px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .sidebar .header:hover {
+        background: white;
+    }
+
+.sidebar .header .h4 {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.sidebar .header i {
+    font-size: 14px;
+    color: black;
+}
+
+    .sidebar ul {
+        overflow-y: auto; /* khi tran vien them thanh keo */
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 5px 5px 10px -1px;
+        border-radius: 10PX;
+    }
+
+
+.sidebar ul li a {
+    display: block;
+    padding: 2px 10px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+    .sidebar ul li a:hover {
+        background: white;
+    }
+
+    .sidebar ul li a:active {
+        background: white;
+    }
+
+    .sidebar ul li a:before {
+        content: "~>";
+        margin-right:2px;
+    }
+
+    .sidebar .profile {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 48px;
+        width: 160px;
+        margin-top: auto;
+        padding-left: 1px;
+        padding-right: 1px;
+        background: #d5d4dc;
+        border-radius: 10px;
+        color: #524a96;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 5px 5px 10px -1px;
+    }
+    .sidebar .profile div {
+        display: flex; 
+        align-items:center;
+        flex-grow:1;
+
+    }
+
+    .sidebar .profile:hover {
+        background: white;
+    }
+
+        .sidebar .profile div .user-avatar {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #524a96;
+            padding: 1px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+
+        .sidebar .profile div a {
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 120px;
+        }
+
+
+        .sidebar .profile .btn-sign-out {
+            background: none;
+            border: none;
+        }
+.AllViewWebchat .main-content {
+    padding-left: 50px;
 }

@@ -3,11 +3,160 @@
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
-
+@* 
 <div class="text-center">
-    <h1 class="display-4">Welcome to ChatOnline</h1>
+    <h1 class="display-4">Welcome to ChatOnlineV2</h1>
     <div class="m-5"></div>
     <h2><a href="/swagger">Explore APIs</a></h2>
     <h2><a href="/.well-known/openid-configuration">openid-configuration</a></h2>
-</div>
+</div> *@
 
+<div class="AllViewWebchat"> @* toàn bộ khung chat *@
+    @* ============================== phần sidebar tạo đoạn chat ============================== *@
+    <div class="sidebar"> 
+        @* Đoạn chat, nút tạo đoạn chat *@
+        <div class="header">
+            <h4>Đoạn Chat</h4>
+            <a herf="#" id="create-room" data-toggle="modal" data-target="#create-room-model"></a>
+            <i class="fas fa-plus"></i>
+        </div>
+        @* danh sách các đoạn chat *@
+        <ul class="room list-unstyled" id="room-list">
+            <li>
+                <a herf="#"> ae siêu nhân gao</a>
+            </li>
+        </ul>
+        @* ảnh đại diện, tài khoản, đăng xuất *@
+        <div class="profile">
+            <div>
+                <img src="~/images/icons/default-icon-account.png" class="user-avatar"/>
+                <a >Tên đăng nhập</a>
+            </div>
+            <form class="form-inline">
+                <button type="submit" class="btn-sign-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    @* ======================================================================================== *@
+
+    @* ============================== phần chính trong đoạn chat ============================== *@
+@*     <div class="main content">
+        <span class="m-auto">
+            Vui lòng chọn đoạn chat;
+        </span>
+    </div> *@
+
+    <div class="main-content">
+        <div class="header">
+            <h5 id="joinRoom">Sảnh chat</h5>
+            <div class="room-actions">
+                <button type="button" class="btn btn-link text-secondary px-1" data-toggle="modal" data-target="#rename-room-model">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button type="button" class="btn btn-link text-secondary px-1" data-toggle="modal" data-target="#remove-room-model">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="chat-body">
+            <ul class="list-unstyled">
+                <li>
+                    <div class="chat-mesage d-flex"> @* d-flex nằm ngang *@
+                        <div class="left-side">
+                            <img src="/images/icons/default-icon-account.png" class="message-avatar" width="50px" />
+                        </div>
+                        <div class="message-content d-flex flex-column">
+                            <div class="d-flex justity-content-between">
+                                <span class="author ">
+                                    Tác Giả
+                                </span>
+                                <span class="timestamp">
+                                    <i class="far fa-clock"></i>
+                                    <span>11:11</span>
+                                </span>
+                            </div>
+
+                            <div class="content">
+                                Nội dung tin nhắn
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="chat-input">
+            <input class="chat-message" type="text" value="" placeholder="Chỗ điền chat nè !"/>
+            <div class="actions d-flex align-items-center">
+                <form method="post" id="uploadForm">
+                    <label for="UploadFile" class="custom-file-Upload">
+                        <i class="far fa-image"></i>
+                    </label>
+                    <input type="file" id="UploadedFile" name="File" accept=".jpg, .png, .jpeg"/>
+                </form>
+                <a id="emojibtn" href="#">
+                    <i class="far fa-smile"></i>
+                </a>
+                <i class="fas fa-paper-plane" id="btn-send-message"></i>
+            </div>
+
+            <div class="emoticon-container d-none" id="emojis-container">
+                <a href="#">
+                    <input type="hidden" value=":)"/>
+                    <img src="~/images/emojis/emoji1.png" />
+                </a>
+                <a href="#">
+                    <input type="hidden" value=":p" />
+                    <img src="~/images/emojis/emoji2.png" />
+                </a>
+                <a href="#">
+                    <input type="hidden" value=":O" />
+                    <img src="~/images/emojis/emoji3.png" />
+                </a>
+                <a href="#">
+                    <input type="hidden" value=":-)" />
+                    <img src="~/images/emojis/emoji4.png" />
+                </a>
+                <a href="#">
+                    <input type="hidden" value="B|" />
+                    <img src="~/images/emojis/emoji5.png" />
+                </a>
+                <a href="#">
+                    <input type="hidden" value=":D" />
+                    <img src="~/images/emojis/emoji6.png" />
+                </a>
+                <a href="#">
+                    <input type="hidden" value="<3" />
+                    <img src="~/images/emojis/emoji7.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+    @* ======================================================================================== *@
+
+    @* ============================== phần danh sách trong đoạn chat ============================== *@
+    <div class="users-container">
+        <div class="header">
+            <h3>Đang trực tuyến - <span data-ng-bind="text: filteredChatUsers().length">0</span></h3>
+        </div>
+
+        <ul id="users-list" class="list-unstyled">
+            <li>
+                <div class="user">
+                    <img src="~/images/icons/default-icon-account.png" class="user-avatar" width="50px" />
+                    <div class="right-side">
+                        <input type="hidden" class="username" data-bind="value: $data.userNam" />
+                        <span class="author"></span> 
+                        <small ></small>
+                    </div> 
+                </div>
+            </li>
+        </ul>
+
+        <input type="text" class="" placeholder="Tìm kiếm trực tuyến"/>
+    </div>
+    @* ======================================================================================== *@
+</div>
