@@ -35,8 +35,12 @@ footer{
     opacity:0.5;
 }
 /*==========================================================================*/
+.editHr{
+    border-radius:20px;
+}
 .headerMain {
-    background: white;
+    background: black;
+    opacity:0.5;
 }
 .opacity{
     opacity:0.3;
@@ -49,7 +53,7 @@ footer{
     background: white;
     border: 1px solid black;
     border-radius: 10px;
-    opacity: 0.85;
+    opacity: 0.75;
 }
 
     .AllViewWebchat .sidebar {
@@ -73,6 +77,7 @@ footer{
     background: #d5d4dc;
     color: #524a96;
     border-radius: 20px;
+    border: 1px solid black;
 }
 
 .sidebar .a{
@@ -94,6 +99,7 @@ footer{
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 5px 5px 10px -1px;
         border-radius: 10px;
         margin-bottom: 20px;
+        border: 1px solid black;
     }
     .sidebar .header:hover {
         background: white;
@@ -104,6 +110,7 @@ footer{
     font-weight: 500;
     margin: 0;
     text-transform: uppercase;
+
 }
 
 .sidebar .header i {
@@ -115,6 +122,7 @@ footer{
         overflow-y: auto; /* khi tran vien them thanh keo */
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 5px 5px 10px -1px;
         border-radius: 10PX;
+        border: 1px solid black;
     }
 
 
@@ -141,7 +149,7 @@ footer{
     }
 
     .sidebar .profile {
-
+        border: 1px solid black;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -151,7 +159,7 @@ footer{
         padding-left: 1px;
         padding-right: 1px;
         background: #d5d4dc;
-        border-radius: 10px;
+        border-radius: 50px;
         color: #524a96;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 5px 5px 10px -1px;
     }
@@ -189,6 +197,182 @@ footer{
             background: none;
             border: none;
         }
+
+
 .AllViewWebchat .main-content {
     padding-left: 50px;
 }
+
+.main-content{
+    border-right:1px solid black;
+    overflow: hidden;
+    display:flex;
+    flex-direction:column;
+}
+    .main-content .header{
+        height:50px;
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        padding:10px;
+        border-bottom:1px solid black;
+    }
+
+        .main-content .header h5{
+            margin:0;
+            font-size:18px;
+        }
+            .main-content .header h5:before {
+                content:"~> ";
+            }
+        .main-content .chat-body{
+            overflow-y: auto;
+            flex-grow: 1;
+            padding:10px;
+        }
+            .main-content .chat-input {
+                padding:10px;
+                display:flex;
+                justify-content: space-between;
+                position: relative;
+                background: #f2f2f2;
+            }
+            .main-content .chat-input input {
+                width: 100%;
+                border: none;
+                height: 50px;
+                border-radius: 0;
+                border-top: 1px solid black;
+                background: #f2f2f2;
+                margin-top: auto;
+                text-indent: 10px;
+            }
+            .main-content .chat-input input[type="file"]{
+                display:none;
+            }
+            .main-content .chat-input .actions{
+                padding: 0 10px;
+            }
+                .main-content .chat-input .actions i {
+                    color: #aaa;
+                    cursor: pointer;
+                }
+                .main-content .chat-input .actions i:hover {
+                    color:#555;
+                }
+                .main-content .chat-input .actions label {
+                    margin-bottom: 0;
+                }
+                .main-content .chat-input .actions #emojibtn {
+                    margin: 0 10px;
+                }
+            .main-content .chat-input .emoticon-container {
+                width:145px;
+                background: white;
+                height:60px;
+                border:1px solid black;
+                position:absolute;
+                right:54px;
+                bottom:32px;
+                padding:5px 7px;
+                line-height:20px;
+            }
+            .main-content .chat-input .emoticon-container a{
+                float:left;
+                height:24px;
+                margin-left:4px;
+            }
+.chat-message{
+    margin:10px;
+    min-width:200px;
+}
+    .chat-message .message-content{
+        background:#f5f5f5;
+        padding:3px 8px;
+        border:1px solid black;
+        border-radius:5px;
+        color:#777;
+        min-width: 220px;
+        max-width:500px;
+    }
+        .chat-message .message-content span {
+            color: #777;
+        }
+        .chat-message .message-content .author {
+            color: #1a6baa;
+            font-size:12px;
+            font-weight: bold;
+        }
+        .chat-message .message-content .content {
+            display:block;
+            padding:2px 0;
+        }
+        .chat-message .message-content .timestamp{
+            font-size= 12px;
+            color: #999;
+            float: right;
+            line-height: 21px;
+            margin:0 5px;
+        }
+    .chat-message .message-avatar {
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin-right: 10px;
+        border-radius: 21px;
+        border: 1px solid black;
+    }
+.users-container{
+    display:flex;
+    flex-direction: column;
+}
+    .users-container .header {
+        height: 50px;
+        display: flex;
+        align-content: center;
+        padding: 10px;
+        border-bottom: 1px solid black;
+    }
+    .users-container .header h3{
+        margin:0;
+        font-weight:400;
+        text-transform:uppercase;
+        color:#555;
+        font-size:16px;
+    }
+    .users-container #users-list .user{
+        padding:10px;
+        display: flex;
+        align-items:center;
+    }
+    .users-container #users-list .user img{
+        width:32px;
+        height:32px;
+        margin-right: 5px;
+    }
+    .users-container #users-list .user .right-side{
+        width:100%;
+        line-height:16px;
+        overflow:hidden;
+    }
+        .users-container #users-list .user .right-side span{
+            display:block;
+            font-size:14px;
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
+        }
+    .users-container #users-list .user:hover {
+        background: #d6efee;
+        cursor: pointer;
+    }
+    .users-container input {
+        width: 100%;
+        border: none;
+        height: 50px;
+        border-radius: 0;
+        border-top: 1px solid black;
+        background: #f2f2f2;
+        margin-top:auto;
+        text-indent:10px;
+    }
