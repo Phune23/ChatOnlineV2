@@ -2,6 +2,7 @@
 using ChatOnlineV2.Data;
 using ChatOnlineV2.Data.Entities;
 using ChatOnlineV2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ namespace ChatOnlineV2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class MessagesController : ControllerBase
     {
         private readonly ManageChatDbContext _context;

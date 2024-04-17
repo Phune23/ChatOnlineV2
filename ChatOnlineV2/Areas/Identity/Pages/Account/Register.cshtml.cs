@@ -90,8 +90,6 @@ namespace ChatOnlineV2.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
-            [Required]
-            public string DisPlayName { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -131,7 +129,18 @@ namespace ChatOnlineV2.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var avatars = new string[] { "avatar1.png", "avatar2.png", "avatar3.png", "avatar4.png" };
+
+                var index = int.Parse(Input.Avatar);
+                if (index < 0 || index > avatars.Count() - 1) 
+                    index = 0; /* lấy avatar đầu tiên */
+
+                var avatarName = avatars[index]; /* lấy danh sách ra */
+
+
+
+                //var user = CreateUser();
+                var user = new ManageUser { UserName = Input.UserName, Email = Input.Email, FullName = Input.FullName, Avatar = avatarName };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

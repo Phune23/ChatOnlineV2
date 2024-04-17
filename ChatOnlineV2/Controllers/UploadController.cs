@@ -2,6 +2,7 @@
 using ChatOnlineV2.Data;
 using ChatOnlineV2.Data.Entities;
 using ChatOnlineV2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ namespace ChatOnlineV2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class UploadController : ControllerBase
     {
         private readonly int FileSizeLimit; //giới hạn kích thước file
@@ -23,7 +25,7 @@ namespace ChatOnlineV2.Controllers
             IWebHostEnvironment environment,
 
             IConfiguration configruation)
-            {
+        {
             _context = context;
             _mapper = mapper;
             _environment = environment;
@@ -31,7 +33,7 @@ namespace ChatOnlineV2.Controllers
 
             FileSizeLimit = configruation.GetSection("FileUpload").GetValue<int>("FileSizeLimit"); //gới hạn kích thước file trỏ tới FileUpload và sau đó tới phần FileSizeLimit
             AllowedExtensions = configruation.GetSection("FileUpload").GetValue<string>("AllowedExtensions").Split(","); // xóa bỏ các giấu phẩy trong appestting.Development.json => "AllowedExtensions": ".jpg,.jpeg,.png"
-            }
+        }
 
 
         [HttpPost]
@@ -93,7 +95,7 @@ namespace ChatOnlineV2.Controllers
             if (file.Length > FileSizeLimit) //nếu file lớn hơn giới hạn thì ta ko uploand
                 return false;
 
-            var extension = Path.GetExtension(file.FileName).ToLowerInvariant(); 
+            var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
             if (string.IsNullOrEmpty(extension) || !AllowedExtensions.Any(s => s.Contains(extension))) //sau khi kiểm tra có null ko sau đó cho phép các đuôi file đã đc ghi trong AllowedExtensions
                 return false;
 

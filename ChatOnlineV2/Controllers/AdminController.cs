@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChatOnlineV2.Controllers
 {
-    public class HomeController : Controller
+    [Authorize(Roles = "Admin")]
+    public class AdminController : Controller
     {
         public IActionResult Index()
         {

@@ -5,24 +5,18 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 form-control-sm" >
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2 class="text-white fw-bold">Đăng ký</h2>
             <hr class="text-white editHr" size="10px" />
-            <h3 class="text-white">Điền thông tin để tạo một tài khoản mới.</h3>
+            <h3 class="text-white">Điền thông tin tạo tài khoản mới.</h3>
             <hr class="text-white editHr" size="10px" />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="text" />
-                <label asp-for="Input.UserName">UserName</label>
+                <label asp-for="Input.UserName">Tên Tài khoản</label>
                 <span asp-validation-for="Input.UserName" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.FullName" class="form-control" autocomplete="fullName" aria-required="true" placeholder="text" />
-                <label asp-for="Input.FullName">UserName</label>
-                <span asp-validation-for="Input.FullName" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="name@example.com" />
@@ -30,37 +24,50 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Mật khẩu</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <input asp-for="Input.FullName" class="form-control" autocomplete="new-password" aria-required="true" placeholder="text" />
+                <label asp-for="Input.FullName">Họ và tên</label>
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Xác nhận mật khẩu</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            <div class="row">
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.Password">Mật khẩu</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.ConfirmPassword">Xác nhận mật khẩu</label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group ">
                 <p class="text-white">Ảnh đại diện</p>
-                <label>
-                    <input asp-for="Input.Avatar" type="radio" value="0" checked/>
-                    <img src="~/images/icons/avatar1.png" alt="avatar 0"/>
-                </label>
-                    <label>
-                    <input asp-for="Input.Avatar" type="radio" value="1" checked/>
-                    <img src="~/images/icons/avatar2.png" alt="avatar 1"/>
+                <label >
+                    <input asp-for="Input.Avatar" type="radio" value="0" checked />
+                    <img class="avatar-icon " src="~/images/icons/avatar5.png" alt="avatar 0" />
                 </label>
                 <label>
-                    <input asp-for="Input.Avatar" type="radio" value="2" checked />
-                    <img src="~/images/icons/avatar3.png" alt="avatar 3" />
+                    <input asp-for="Input.Avatar" type="radio" value="0" checked />
+                    <img class="avatar-icon " src="~/images/icons/avatar6.png" alt="avatar 0" />
                 </label>
                 <label>
-                    <input asp-for="Input.Avatar" type="radio" value="3" checked />
-                    <img src="~/images/icons/avatar4.png" alt="avatar 3" />
+                    <input asp-for="Input.Avatar" type="radio" value="0" checked />
+                    <img class="avatar-icon " src="~/images/icons/avatar8.png" alt="avatar 0" />
+                </label>
+                <label>
+                    <input asp-for="Input.Avatar" type="radio" value="3"  />
+                    <img class="avatar-icon" src="~/images/icons/avatar9.png" alt="avatar 3"/>
                 </label>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Đăng ký</button>
         </form>
     </div>
+            
+             
     <div class="col-md-6 col-md-offset-2">
         <section>
             <h3 class="text-white">Sử dụng dịch vụ khác để đăng nhập.</h3>

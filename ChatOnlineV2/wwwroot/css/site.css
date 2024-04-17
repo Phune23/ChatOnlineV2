@@ -308,7 +308,7 @@ footer{
             padding:2px 0;
         }
         .chat-message .message-content .timestamp{
-            font-size= 12px;
+            font-size: 12px;
             color: #999;
             float: right;
             line-height: 21px;
@@ -376,4 +376,26 @@ footer{
         background: #f2f2f2;
         margin-top: auto;
         text-indent: 10px;
+    }
+
+input[type="radio"] {
+    display: none;
+  
+}
+    input[type="radio"] + img {
+        border-radius: 50%;
+        border: 2px white transparent;
+        padding: 1px;
+        cursor: pointer;
+        width: 80px;
+        height:80px;
+        background:white;
+    }
+        input[type="radio"]:checked + img {
+            border-radius:50%;
+            border:8px solid #1decea
+        }
+    input[type="radio"] + img:hover {
+        background: #29a0d4;
+        padding: 1px;
     }

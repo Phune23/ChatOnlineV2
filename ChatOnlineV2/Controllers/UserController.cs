@@ -11,7 +11,7 @@ namespace ChatOnlineV2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize("Bearer")]
+    [Authorize(Roles = "Admin")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<ManageUser> _userManager;
@@ -51,16 +51,17 @@ namespace ChatOnlineV2.Controllers
         }
 
         [HttpGet]
+
         public async Task<IActionResult> GetUsers()
         {
             var users = _userManager.Users;
 
             var uservms = await users.Select(u => new UserViewModel() // vì muốn xem lên ta dùng UserVm
             {
-                ////Id = u.Id,
-                ////UserName = u.UserName,
-                ////Email = u.Email,
-                ////PhoneNumber = u.PhoneNumber,
+                Id = u.Id,
+                UserName = u.UserName,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
 
             }).ToListAsync();
 
@@ -76,10 +77,10 @@ namespace ChatOnlineV2.Controllers
 
             var userVm = new UserViewModel()
             {
-                //Id = user.Id,
-                //UserName = user.UserName,
-                //Email = user.Email,
-                //PhoneNumber = user.PhoneNumber,
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
 
             };
             return Ok(userVm);
