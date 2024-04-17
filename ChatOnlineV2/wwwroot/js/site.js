@@ -8,3 +8,7 @@ $(function () {
         $("#emojis-container").toggleClass("d-none");
     });
 })
+
+$('#show-create-room-modal').on('click', function () {
+    $('create-room-modal').modal('show');
+});

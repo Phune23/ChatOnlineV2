@@ -32,11 +32,11 @@ namespace ChatOnlineV2.Controllers
             var dob = DateTime.Parse(request.Dob);
             var user = new ManageUser() // vì tạo một User lên ta dùng User Entites luân vì nó có đủ các tường
             {
-                ////Id = Guid.NewGuid().ToString(),
-                ////Email = request.Email,
-                ////UserName = request.UserName,
+                Id = Guid.NewGuid().ToString(),
+                Email = request.Email,
+                UserName = request.UserName,
 
-                ////PhoneNumber = request.PhoneNumber,
+                PhoneNumber = request.PhoneNumber,
 
             };
             var result = await _userManager.CreateAsync(user, request.Password); // phương thức CreateAsync đã được Identity.Core, hỗ trợ , bài miên phí ta phải viết nó
